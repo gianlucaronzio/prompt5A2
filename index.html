@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Raccolta di prompt per il docente di lettere di quinta liceo in vista della maturità 2027.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+<title>Prompt per la maturità 2027</title>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#231f1a;--mute:#6b645a;--line:#e5ddd0;--acc:#8c2f39;--accbg:#f6e7e8;--ok:#2f6b4a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1815;--card:#26221e;--ink:#f1ebe2;--mute:#a79e91;--line:#3a342d;--acc:#e08a93;--accbg:#3a2528;--ok:#7fc79e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1b1815;--card:#26221e;--ink:#f1ebe2;--mute:#a79e91;--line:#3a342d;--acc:#e08a93;--accbg:#3a2528;--ok:#7fc79e;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Georgia,"Times New Roman",serif}
+.w{max-width:760px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:1.7rem;line-height:1.2;margin:8px 0 4px}
+.sub{color:var(--mute);margin:0 0 16px;font-family:system-ui,sans-serif;font-size:.95rem}
+input{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:16px system-ui,sans-serif}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:12px 0}
+.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 13px;border-radius:99px;font:600 .85rem system-ui,sans-serif;cursor:pointer}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.cnt{font:.85rem system-ui,sans-serif;color:var(--mute);margin:2px 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:12px}
+.top{display:flex;gap:10px;align-items:flex-start}
+.n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accbg);color:var(--acc);font:700 .85rem system-ui,sans-serif;display:grid;place-items:center}
+.t{font-weight:700;font-size:1.05rem;margin:0}
+.tag{font:.75rem system-ui,sans-serif;color:var(--acc);text-transform:uppercase;letter-spacing:.04em}
+.p{margin:10px 0 12px;font-size:.97rem;white-space:pre-wrap}
+.row{display:flex;gap:8px}
+.btn{border:1px solid var(--acc);background:transparent;color:var(--acc);padding:8px 14px;border-radius:9px;font:600 .88rem system-ui,sans-serif;cursor:pointer}
+.btn.pri{background:var(--acc);color:#fff}
+.btn.done{background:var(--ok);border-color:var(--ok);color:#fff}
+.hint{font:.85rem system-ui,sans-serif;color:var(--mute);background:var(--accbg);border-radius:10px;padding:10px 12px;margin:0 0 14px}
+.empty{text-align:center;color:var(--mute);padding:30px 0}
+</style>
+</head>
+<body>
+<div class="w">
+<h1>Prompt per la maturità 2027</h1>
+<p class="sub">Per il docente di lettere in quinta liceo. Tocca “Copia” e incolla nella chat.</p>
+<p class="hint">Sostituisci i testi tra [parentesi quadre] con i tuoi dati: autore, classe, tempi, obiettivi.</p>
+<input id="q" type="search" placeholder="Cerca un prompt…" aria-label="Cerca">
+<div class="chips" id="chips"></div>
+<div class="cnt" id="cnt"></div>
+<div id="list"></div>
+</div>
+<script>
+var CATS=["Tutti","Prima prova","Programma e lezioni","Verifiche","Colloquio orale","Inclusione","Ripasso","Scrittura e lessico","Organizzazione","Motivazione"];
+var P=[
+["Prima prova","Griglia di analisi del testo (Tipologia A)","Crea una griglia di valutazione per la Tipologia A della prima prova, con indicatori generali e specifici in centesimi, descrittori per ogni livello e conversione in ventesimi. Il testo di riferimento è [autore e opera]. Rendila chiara e utilizzabile in una correzione rapida."],
+["Prima prova","Tracce di analisi del testo","Proponi 5 tracce di Tipologia A su autori del programma di quinta ([elenco autori]), ciascuna con un brano di circa 25 righe da indicare, 5 domande di comprensione e analisi, e una proposta di interpretazione. Indica per ogni traccia il grado di difficoltà."],
+["Prima prova","Tracce di testo argomentativo (Tipologia B)","Scrivi 3 tracce di Tipologia B con un testo di partenza di attualità o di critica, domande di comprensione, individuazione di tesi e argomenti, e una consegna di produzione. Collegale a [tema, es. intelligenza artificiale, memoria storica, ambiente]."],
+["Prima prova","Tema di attualità (Tipologia C)","Genera 6 tracce di Tipologia C di ambito storico, filosofico e civile, con una citazione stimolo e una breve consegna. Per ciascuna suggerisci 3 collegamenti con il programma di letteratura e storia."],
+["Prima prova","Correzione di un elaborato","Ti incollo un elaborato di uno studente. Valutalo con la griglia ministeriale, indica punti di forza, errori ricorrenti (lessico, coesione, punteggiatura) e scrivi un commento di restituzione di 5 righe, rispettoso e costruttivo. Testo: [incolla qui]."],
+["Programma e lezioni","Piano di ripasso a ritroso","Costruisci un piano di lavoro da [data] alla maturità 2027 per un programma di letteratura italiana da Leopardi al Novecento, con [numero] ore settimanali. Distribuisci autori e generi, inserisci verifiche intermedie e settimane di recupero."],
+["Programma e lezioni","Lezione di 50 minuti su un autore","Progetta una lezione di 50 minuti su [autore e opera] per una quinta liceo: apertura motivante, spiegazione guidata, lettura di un testo, attività di gruppo e verifica finale di 5 minuti. Indica i tempi per ogni fase."],
+["Programma e lezioni","Collegamenti tra autori","Elabora una mappa di collegamenti tra [autore A] e [autore B] con temi comuni, differenze di poetica, contesto storico e almeno 3 testi da confrontare. Presentala in forma di schema da proiettare in classe."],
+["Programma e lezioni","Percorsi pluridisciplinari","Proponi 6 percorsi pluridisciplinari per la quinta, ognuno con un nodo concettuale (es. il tempo, la crisi dell’io, la guerra), i testi letterari, e i collegamenti con filosofia, storia, storia dell’arte e [altra materia]."],
+["Programma e lezioni","Contestualizzazione storica","Scrivi una sintesi di una pagina sul contesto storico e culturale di [periodo, es. Italia giolittiana e primo Novecento] per spiegare la letteratura di quegli anni. Aggiungi 5 date essenziali e 5 parole chiave."],
+["Verifiche","Verifica scritta sul Novecento","Crea una verifica di 60 minuti su [argomento] con 8 domande a risposta aperta breve, 1 analisi guidata di un testo e 1 quesito di approfondimento. Aggiungi la griglia di punteggio e una chiave di risposta."],
+["Verifiche","Quiz a risposta multipla","Genera 15 domande a risposta multipla su [autore o periodo], con 4 opzioni, una sola corretta e distrattori plausibili. Indica la risposta giusta e una breve spiegazione dell’errore tipico per ogni domanda."],
+["Verifiche","Simulazione completa di prima prova","Prepara una simulazione di prima prova in 6 ore: 2 tracce di Tipologia A, 2 di Tipologia B e 2 di Tipologia C, con consegne in stile ministeriale. Aggiungi istruzioni per la somministrazione e i criteri di correzione."],
+["Verifiche","Feedback collettivo alla classe","Dopo la correzione di [numero] elaborati, ho notato questi errori ricorrenti: [elenco]. Scrivi un intervento di 15 minuti per la classe con esempi (anonimi) di errore e riscrittura corretta, più 3 esercizi rapidi."],
+["Colloquio orale","Simulazione del colloquio","Simula un colloquio d’esame di 25 minuti con uno studente di quinta liceo, partendo da questo materiale: [testo, immagine o documento]. Fai domande graduali di letteratura e collegamento con altre materie, e alla fine dai una valutazione con punti da migliorare."],
+["Colloquio orale","Materiali di avvio del colloquio","Proponi 8 materiali (brano, citazione, immagine, grafico) adatti ad avviare un colloquio orale su [percorso], ciascuno con 3 possibili direzioni di sviluppo e domande che il docente può porre."],
+["Colloquio orale","Educazione civica nel colloquio","Prepara 5 spunti di educazione civica collegati al programma di letteratura, per esempio il lavoro in Verga, la guerra in Ungaretti, la libertà in Calamandrei. Per ognuno inserisci domande guida e un breve testo di riferimento."],
+["Inclusione","Adattamento per studenti con DSA","Adatta questa lezione o verifica su [argomento] per studenti con DSA: semplifica il layout, riduci la lunghezza senza impoverire i contenuti, proponi mappe concettuali e strumenti compensativi. Mantieni gli obiettivi minimi di quinta liceo."],
+["Inclusione","Spiegazione su due livelli","Spiega [autore o testo] a due livelli: una versione di base con linguaggio semplice e frasi brevi, e una avanzata con approfondimento critico. Aggiungi 5 domande per ogni livello."],
+["Ripasso","Mappe concettuali e schede flash","Crea 20 schede flash (domanda e risposta) per il ripasso di [autore o movimento], con date, opere, poetica e parole chiave. Organizzale per difficoltà crescente, da usare in classe o a casa."],
+["Ripasso","Sintesi da dare agli studenti","Scrivi una sintesi di una pagina per il ripasso finale su [autore, es. Pirandello], con vita essenziale, opere principali, poetica, 3 citazioni brevi da ricordare e 3 possibili domande d’esame con spunti di risposta."],
+["Scrittura e lessico","Laboratorio di scrittura argomentativa","Progetta un laboratorio di 3 incontri da 50 minuti per migliorare la scrittura argomentativa in quinta: costruzione della tesi, uso dei connettivi, citazione di fonti e conclusione efficace. Per ogni incontro indica un’attività pratica e un breve esercizio da fare a casa."],
+["Scrittura e lessico","Lessico critico e registro","Prepara una lista di 40 termini del lessico critico e letterario utili alla maturità (es. poetica, straniamento, focalizzazione, tópos) con definizione di una riga ed esempio d’uso. Aggiungi 10 coppie di espressioni colloquiali da trasformare in registro formale."],
+["Scrittura e lessico","Riscrittura e revisione guidata","Ti incollo un paragrafo scritto da uno studente. Evidenzia ripetizioni, frasi troppo lunghe e passaggi poco chiari, proponi due riscritture (una prudente e una più incisiva) e formula 3 domande che aiutino lo studente a correggersi da solo. Testo: [incolla qui]."],
+["Organizzazione","Calendario delle simulazioni","Costruisci un calendario di simulazioni di prima prova e di colloquio da [data] a maggio 2027, in accordo con [altre materie coinvolte]. Distribuisci i carichi di correzione in modo sostenibile per me e indica quando restituire i feedback."],
+["Organizzazione","Comunicazione a famiglie e classe","Scrivi una comunicazione chiara per famiglie e studenti sul percorso verso la maturità 2027: struttura delle prove, tempi delle simulazioni, criteri di valutazione e modalità di recupero. Tono rassicurante e sintetico, massimo 200 parole."],
+["Organizzazione","Documento del 15 maggio","Aiutami a redigere la parte di italiano del documento del consiglio di classe per il 15 maggio: obiettivi raggiunti, metodologie, testi e autori svolti, criteri di valutazione e attività di recupero. Dati della classe: [numero studenti, ore svolte, particolarità]."],
+["Motivazione","Gestione dell’ansia da esame","Proponi 5 attività brevi da fare in classe per ridurre l’ansia da maturità: strategie di organizzazione del tempo di scrittura, schemi di scaletta in 5 minuti e una routine di preparazione al colloquio. Spiegale con linguaggio semplice e adatto a diciottenni."],
+["Motivazione","Rilancio del gusto per la lettura","Suggerisci 6 modi per riavvicinare una classe stanca ai testi del programma: letture a voce alta, confronto con film, musica e attualità, dibattiti. Per ciascuno indica un esempio concreto con [autore o opera] e il tempo necessario."],
+["Motivazione","Consigli finali agli studenti","Scrivi un discorso di 3 minuti da leggere alla classe a un mese dalla maturità: cosa fare nella prima prova, come affrontare il colloquio e come gestire gli ultimi giorni. Tono autorevole ma vicino, con 3 consigli pratici memorabili."]
+];
+var cat="Tutti",qs="";
+var $=function(i){return document.getElementById(i)};
+function chips(){var h="";CATS.forEach(function(c){h+='<button class="chip'+(c===cat?' on':'')+'" data-c="'+c+'">'+c+'</button>'});$("chips").innerHTML=h}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function render(){
+ var h="",n=0;
+ P.forEach(function(p,i){
+  if(cat!=="Tutti"&&p[0]!==cat)return;
+  if(qs&&(p[1]+" "+p[2]+" "+p[0]).toLowerCase().indexOf(qs)<0)return;
+  n++;
+  h+='<div class="card"><div class="top"><div class="n">'+(i+1)+'</div><div><div class="tag">'+p[0]+'</div><p class="t">'+esc(p[1])+'</p></div></div><p class="p">'+esc(p[2])+'</p><div class="row"><button class="btn pri" data-i="'+i+'">Copia</button></div></div>';
+ });
+ $("list").innerHTML=h||'<div class="empty">Nessun prompt trovato.</div>';
+ $("cnt").textContent=n+" prompt su "+P.length;
+}
+function copy(t,b){
+ function ok(){b.textContent="Copiato";b.classList.add("done");setTimeout(function(){b.textContent="Copia";b.classList.remove("done")},1500)}
+ try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}
+ function fb(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");ok()}catch(e){}document.body.removeChild(a)}
+}
+$("chips").addEventListener("click",function(e){var c=e.target.getAttribute("data-c");if(c){cat=c;chips();render()}});
+$("q").addEventListener("input",function(e){qs=e.target.value.trim().toLowerCase();render()});
+$("list").addEventListener("click",function(e){var i=e.target.getAttribute("data-i");if(i!==null)copy(P[i][2],e.target)});
+chips();render();
+</script>
+</body>
+</html>
